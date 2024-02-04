@@ -31,7 +31,7 @@ const PostDetails = () => {
   const handleDeletePost = () => {
     deletePost({ postId: id, imageId: post?.imageid });
     // yaha jo (imageId) ye hamara banaya hua varaible h jisko hamne (api.tsx) me banaya h isme hamne post varaible jo ki backend se sara data apne ander contain kiya hua h usse imageid me store Id ko nikaalke is varaible me pass kara di h jisse ham ise apne (api.ts) file ke deletepost function me pass karke us perticular post ko delete kar sake backend se   
-    navigate(-1); // matalb ye delete button dabane se pahle jo cheej jar rahe the usi page per redirect karega 
+    navigate("/"); // matalb ye delete button dabaane se post delete hogi aur fhir hame home page per navigate ho jaayenge
   };
 
   return (

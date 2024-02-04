@@ -16,7 +16,7 @@ const Saved = () => {
     },
   }))
   .reverse();
-  console.log(savePosts)   // ye jo bhi data hamne curreant varaible me se extract kiya h usko is (saveposts) varaible me store kara liya h aur ye uuper ko (craetor)varaible banaya tha wo bhi is (saveposts) varaible me store h jisko ham apne (gridpostlist) file me passs kar rahe h  
+  // console.log(savePosts)   // ye jo bhi data hamne curreant varaible me se extract kiya h usko is (saveposts) varaible me store kara liya h aur ye uuper ko (craetor)varaible banaya tha wo bhi is (saveposts) varaible me store h jisko ham apne (gridpostlist) file me passs kar rahe h  
 
   return (
     <div className="saved-container">

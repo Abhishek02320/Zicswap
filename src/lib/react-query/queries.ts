@@ -9,13 +9,13 @@ import {
 
   import { QUERY_KEYS } from "@/lib/react-query/queryKeys";
 
-import {  createUserAccount,
+import { 
+  createUserAccount,
   signInAccount,
   getCurrentUser,
   signOutAccount,
-  getUsers, 
+  getUsers,
   createPost,
-  getRecentPosts,
   getPostById,
   updatePost,
   getUserPosts,
@@ -23,6 +23,7 @@ import {  createUserAccount,
   likePost,
   getUserById,
   updateUser,
+  getRecentPosts,
   getInfinitePosts,
   searchPosts,
   savePost,
@@ -81,6 +82,7 @@ export const useCreatePost = () => {
 };
 
 export const useGetPostById = (postId?: string) => {
+  // console.log(postId)
   return useQuery({
     queryKey: [QUERY_KEYS.GET_POST_BY_ID, postId],
     queryFn: () => getPostById(postId),
@@ -202,6 +204,7 @@ export const useGetPosts = () => {
   return useInfiniteQuery({     // this is a built in react query feature
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
     queryFn: getInfinitePosts as any,  // calling this from (api.ts)
+    initialPageParam: 1,
     getNextPageParam: (lastPage: any) => {    // next page ham param ke through get karte h mena jitne page ki post onscreen render ho chuki h wo information hame ye param dega and ham next page jo get kar rahe h with (10) post of fetching data from backend aur agar wo page last h jiski posts render ho raha scrolling me than wo page ham yaha render kar rahe h mena page no. pass kar rahe h   
       // If there's no data, there are no more pagesthan this (if)statement activate
       if (lastPage && lastPage.documents.length === 0) {

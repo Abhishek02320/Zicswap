@@ -58,7 +58,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
       const updatedPost = await updatePost({  // ye function hamne uuper define kar rkha h query me
         ...value,        // jo bhi is value varaible me store h previous post ka data like(caption,tags) usko is function me spread karke le rahe h taaki wo usi puraane post ke varaibles me update ho sake jo pahle se hi is previous post ke data ko contain kiye hue the 
         postId: post.$id,  
-        imageId: post.imageId, // yaha ham apne previos post ke data naye edit data se replace kar rahe h backend me jo ki hamare form me naye data pass kiya h apne form me 
+        imageid: post.imageid, // yaha ham apne previos post ke data naye edit data se replace kar rahe h backend me jo ki hamare form me naye data pass kiya h apne form me 
         imageUrl: post.imageUrl,
       });
 

@@ -125,7 +125,7 @@ export async function createPost(post: INewPost) {
     // Upload file to appwrite storage
     const uploadedFile = await uploadFile(post.file[0]);
    // uploadfile is a function jo ki hamne neeche line (167) me define kiya h for uploadfile and is function me ham pass kar rahe h apne (appwrite ke databse ke post )section ke (0)th mean sabse uuper waali file ka data is data ko is (uploadedFile)varaible me store kara liya h 
-   console.log(post) 
+  //  console.log(post) 
    if (!uploadedFile) throw Error;   // agar is varaible me koi bhi data store na ho to error show kare 
 
     // Get file url
@@ -208,6 +208,7 @@ export function getFilePreview(fileId: string) {
 
 // ============================== DELETE FILE
 export async function deleteFile(fileId: string) {
+  // console.log(fileId)
   try {
     await storage.deleteFile(appwriteConfig.storageId, fileId);
 
@@ -314,18 +315,19 @@ export async function getPostById(postId?: string) {
 // ============================== UPDATE POST
 export async function updatePost(post: IUpdatePost) {
   const hasFileToUpdate = post.file.length > 0;   // ye line se ham ye bata rahe h ki update karne ke liye jo data hamne pass kya h onscreen se (post)varaible me pass kiye h wo (0)se jayada caharacters h than ye function chalega aisa nahi h ki hamne kuch update hi nahi kiya sirf edit per click karke ham form per pahuche per hamne kuch edit nahi kiya to hamara ye fucntion faaltu me na chale aur backend per koi update ki request na maare because jaise hi ham submit button per click karenge to backend per request hit hogi update ki but is backend me kuch bhi update nahi hoga because agar ye function nahi chalega appwrite ka to ye function hamara tab nahi cahelga jab post varaible me (0)caharacyer pass kiye jaayegenge update ke liye 
-
-  try {
-    let image = {
-      imageUrl: post.imageUrl,
-      imageid: post.imageid,
-    };
-
-    if (hasFileToUpdate) {
-      // Upload new file to appwrite storage
-      const uploadedFile = await uploadFile(post.file[0]);
-      if (!uploadedFile) throw Error;
-
+// console.log(post)
+try {
+  let image = {
+    imageUrl: post.imageUrl,
+    imageid: post.imageid,
+  };
+  
+  if (hasFileToUpdate) {
+    // Upload new file to appwrite storage
+    const uploadedFile = await uploadFile(post.file[0]);
+    if (!uploadedFile) throw Error;
+    
+    // console.log(uploadedFile.$id)
       // Get new file url
       const fileUrl = getFilePreview(uploadedFile.$id);
       if (!fileUrl) {
@@ -513,7 +515,7 @@ export async function updateUser(user: IUpdateUser) {
   try {
     let image = {
       imageUrl: user.imageUrl,
-      imageid: user.imageid,
+      imageid: user.imageId,
     };
 
     if (hasFileToUpdate) {
@@ -555,8 +557,8 @@ export async function updateUser(user: IUpdateUser) {
     }
 
     // Safely delete old file after successful update
-    if (user.imageid && hasFileToUpdate) {
-      await deleteFile(user.imageid);
+    if (user.imageId && hasFileToUpdate) {
+      await deleteFile(user.imageId);
     }
 
     return updatedUser;
